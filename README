@@ -1,0 +1,1 @@
+ap: pipe a command through a pager if stdout is a tty

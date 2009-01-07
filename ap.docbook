@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+Copyright 2008 Javier Merino <cibervicho@gmail.com>
+
+This program is free software; you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the
+Free Software Foundation; either version 2 of the License, or (at your
+option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+
+-->
+
+<!DOCTYPE refentry PUBLIC "-//OASIS//DTD DocBook V4.4//EN"
+"file:///usr/share/xml/docbook/schema/dtd/4.4/docbookx.dtd"
+[]>
+
+<refentry>
+	<refentryinfo>
+		<address>
+			<email>cibervicho@gmail.com</email>
+		</address>
+		<author>
+			<firstname>Javier</firstname>
+			<surname>Merino</surname>
+		</author>
+		<date>2008-05-13</date>
+	</refentryinfo>
+
+	<refmeta>
+		<refentrytitle>ap</refentrytitle>
+		<manvolnum>1</manvolnum>
+	</refmeta>
+
+	<refnamediv>
+		<refname>ap</refname> 
+		<refpurpose>Run command through a pager if the standard output is a tty</refpurpose>
+	</refnamediv>
+
+	<refsynopsisdiv>
+		<cmdsynopsis>
+			<command>ap</command> 
+			<arg><option>-p <replaceable>pager</replaceable></option></arg>
+			<arg rep="repeat"><option>-a <replaceable>additional_arg</replaceable></option></arg>
+			<arg><replaceable>command</replaceable></arg>
+			<arg rep="repeat">><replaceable>args</replaceable></arg>
+		</cmdsynopsis>
+	</refsynopsisdiv>
+	
+	<refsect1>
+		<title>DESCRIPTION</title>
+		
+		<para><command>ap</command> runs the command and pipes its stdout and stderr through a pager (like <command>more</command> or <command>less</command>) if the standard output is a tty. If it's not a tty, the command is run as usual (without modifying its stdout, that is). This behaviour adds the ability to autopage commands, similar to how some git subcommands work.
+		</para>
+	</refsect1>
+	
+	<refsect1>
+		<title>OPTIONS</title>
+
+		<variablelist>
+			<varlistentry>
+				<term><option>-a</option></term>
+				<listitem>
+					<para>Add an argument to the command if the stdout is a tty. See EXAMPLES below.</para>
+				</listitem>
+			</varlistentry>
+
+			<varlistentry>
+				<term><option>-p</option></term>
+				<listitem>
+					<para>Run the specified pager if the stdout is a tty. If this option is not specified, the pager is guessed looking at the $PAGER environment variable, then <command>/usr/bin/pager</command> is tried and finally <command>more</command>.</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</refsect1>
+
+	<refsect1>
+		<title>EXAMPLES</title>
+
+		<para><cmdsynopsis>
+			<command>ap ps -el</command>
+		</cmdsynopsis></para>
+		<para> This command works like <command>ps -el | pager</command> if standard output is a tty, but works like <command>ps -el</command> if the standard output is not a tty. The power of <command>ap</command> comes when combined with aliases. For example, you can define in your ~/.bashrc:</para>
+
+		<para><cmdsynopsis>
+			<command>alias ps="ap ps"</command>
+		</cmdsynopsis></para>
+
+		<para>That way, you can use ps as usual, and it will work when piped to other commands like <command>grep</command>. To autopage <command>grep</command> but keep its coloring capabilities you can use:</para> 
+		<para><cmdsynopsis>
+			<command>alias grep='ap -p "less -FR" -a --color=always grep'</command>
+		</cmdsynopsis></para>
+
+		<para>Other interesting suggestions are:</para>
+		<para><cmdsynopsis>
+			<command>alias ll='ap -p "less -FR" -a --color=always ls -l'</command>
+		</cmdsynopsis></para>
+		<para><cmdsynopsis>
+			<command>alias wdiff='ap -p "colordiff | less -R" -a -n wdiff'</command>
+		</cmdsynopsis></para>
+	</refsect1>
+
+	<refsect1>
+		<title>SEE ALSO</title>
+		
+		<para>
+			<citerefentry>
+				<refentrytitle>more</refentrytitle><manvolnum>1</manvolnum>
+			</citerefentry>
+			<citerefentry>
+				<refentrytitle>less</refentrytitle><manvolnum>1</manvolnum>
+			</citerefentry>
+			<citerefentry>
+				<refentrytitle>most</refentrytitle><manvolnum>1</manvolnum>
+			</citerefentry>
+		</para>
+	</refsect1>
+
+        <refsect1>
+		<title>AUTHOR</title>
+
+		<para>Copyright 2008 by Javier Merino &lt;cibervicho@gmail.com&gt;</para>
+		<para>Licensed under the GNU GPL</para>
+	</refsect1>
+</refentry>
