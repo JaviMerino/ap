@@ -1,0 +1,15 @@
+Source: ap
+Section: utils
+Priority: extra
+Maintainer: Javi Merino <cibervicho@gmail.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.4
+Vcs-Git: git://github.com/Vicho/ap.git
+Homepage: http://github.com/Vicho/ap
+
+Package: ap
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: less
+Description: pipe a command through a pager if stdout is a tty
+ ap adds autopaging abilities like the one found in "git" to commands like "ls" or "grep". Instead of implementing autopaging for every command, this generic wrapper makes it easy to add this ability to any command that simply writes to stdout and stderr.
