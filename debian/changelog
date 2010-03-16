@@ -1,5 +1,12 @@
+ap (1.0-2) unstable; urgency=low
+
+  * Added bash aliases examples.
+  * Small fixes in the building of the package.
+
+ -- Javi Merino (Vicho) <cibervicho@gmail.com>  Tue, 16 Mar 2010 15:56:24 +0100
+
 ap (1.0-1) unstable; urgency=low
 
   * Initial release
 
- -- Javier Merino <cibervicho@gmail.com>  Sat, 13 Mar 2010 12:09:01 +0100
+ -- Javi Merino (Vicho) <cibervicho@gmail.com>  Sat, 13 Mar 2010 12:09:01 +0100
