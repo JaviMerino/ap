@@ -8,7 +8,7 @@ DOCBOOK2XMAN="docbook2x-man"
 all: $(TARGETS) $(MANS)
 
 clean:
-	rm -f $(BINS) $(MANS)
+	rm -f $(TARGETS) $(MANS)
 
 install:
 	mkdir -p $(DESTDIR)/usr/bin
