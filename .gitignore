@@ -1,0 +1,7 @@
+ap
+ap.1
+.pc/
+debian/ap.debhelper.log
+debian/ap.substvars
+debian/files
+debian/patches/
